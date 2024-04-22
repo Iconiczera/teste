@@ -1,13 +1,16 @@
+// Interface Promocao
 interface Promocao {
     double calcularDesconto();
 }
 
+// Classe ProdutoEletronico
 class ProdutoEletronico implements Promocao {
     private String modelo;
     private String marca;
     private double preco;
     private boolean emPromocao;
 
+    // Construtor
     public ProdutoEletronico(String modelo, String marca, double preco, boolean emPromocao) {
         this.modelo = modelo;
         this.marca = marca;
@@ -15,6 +18,7 @@ class ProdutoEletronico implements Promocao {
         this.emPromocao = emPromocao;
     }
 
+    // Getters e Setters
     public String getModelo() {
         return modelo;
     }
@@ -47,24 +51,28 @@ class ProdutoEletronico implements Promocao {
         this.emPromocao = emPromocao;
     }
 
+    // Método para calcular desconto
     @Override
     public double calcularDesconto() {
         if (emPromocao) {
-            return preco * 0.1;
+            return preco * 0.1; // Desconto de 10%
         } else {
-            return 0;
+            return 0; // Sem desconto
         }
     }
 }
 
+// Subclasse Smartphone
 class Smartphone extends ProdutoEletronico {
     private String sistemaOperacional;
 
+    // Construtor
     public Smartphone(String modelo, String marca, double preco, boolean emPromocao, String sistemaOperacional) {
         super(modelo, marca, preco, emPromocao);
         this.sistemaOperacional = sistemaOperacional;
     }
 
+    // Getter e Setter para sistemaOperacional
     public String getSistemaOperacional() {
         return sistemaOperacional;
     }
@@ -74,14 +82,17 @@ class Smartphone extends ProdutoEletronico {
     }
 }
 
+// Subclasse Laptop
 class Laptop extends ProdutoEletronico {
     private int memoriaRAM;
 
+    // Construtor
     public Laptop(String modelo, String marca, double preco, boolean emPromocao, int memoriaRAM) {
         super(modelo, marca, preco, emPromocao);
         this.memoriaRAM = memoriaRAM;
     }
 
+    // Getter e Setter para memoriaRAM
     public int getMemoriaRAM() {
         return memoriaRAM;
     }
@@ -91,14 +102,17 @@ class Laptop extends ProdutoEletronico {
     }
 }
 
+// Subclasse TV
 class TV extends ProdutoEletronico {
     private int tamanhoTela;
 
+    // Construtor
     public TV(String modelo, String marca, double preco, boolean emPromocao, int tamanhoTela) {
         super(modelo, marca, preco, emPromocao);
         this.tamanhoTela = tamanhoTela;
     }
 
+    // Getter e Setter para tamanhoTela
     public int getTamanhoTela() {
         return tamanhoTela;
     }
@@ -108,6 +122,7 @@ class TV extends ProdutoEletronico {
     }
 }
 
+// Exemplo de uso
 public class Main {
     public static void main(String[] args) {
         Smartphone smartphone = new Smartphone("Galaxy S20", "Samsung", 2000, true, "Android");
