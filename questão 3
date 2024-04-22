@@ -1,0 +1,77 @@
+public class DistribuicaoAlimento {
+    private String nomeProjeto;
+    private String descricao;
+    private String endereco;
+    private String datainicio;
+    private String datafim;
+    private String descAlimento;
+    private float qtde;
+
+    public DistribuicaoAlimento(String nomeProjeto, String descricao, String endereco, String datainicio, String datafim) {
+        this.nomeProjeto = nomeProjeto;
+        this.descricao = descricao;
+        this.endereco = endereco;
+        this.datainicio = datainicio;
+        this.datafim = datafim;
+    }
+
+    public boolean validaProjeto(String nomeProjeto) {
+        return datafim.isEmpty();
+    }
+
+    public String imprimeProjeto() {
+        return "Nome do Projeto: " + nomeProjeto +
+               "\nDescrição: " + descricao +
+               "\nData de Início: " + datainicio +
+               "\nData de Fim: " + datafim +
+               "\nDescrição do Alimento: " + descAlimento +
+               "\nQuantidade: " + qtde;
+    }
+}
+
+public class TrabalhoVoluntario {
+    private String nomeProjeto;
+    private String descricao;
+    private String endereco;
+    private String datainicio;
+    private String datafim;
+    private String tipoTrabalho;
+    private int duracao;
+
+    public TrabalhoVoluntario(String nomeProjeto, String descricao, String endereco, String datainicio, String datafim) {
+        this.nomeProjeto = nomeProjeto;
+        this.descricao = descricao;
+        this.endereco = endereco;
+        this.datainicio = datainicio;
+        this.datafim = datafim;
+    }
+
+    public boolean validaProjeto(String nomeProjeto) {
+        return duracao > 2;
+    }
+
+    public String imprimeProjeto() {
+        return "Nome do Projeto: " + nomeProjeto +
+               "\nDescrição: " + descricao +
+               "\nData de Início: " + datainicio +
+               "\nData de Fim: " + datafim +
+               "\nTipo de Trabalho: " + tipoTrabalho +
+               "\nDuração do Trabalho: " + duracao;
+    }
+}
+
+public class ProjetoSocial {
+    public static void main(String[] args) {
+        DistribuicaoAlimento distribuicaoAlimento = new DistribuicaoAlimento("Projeto1", "Descrição do Projeto 1", "Endereço 1", "01/04/2024", "");
+        TrabalhoVoluntario trabalhoVoluntario = new TrabalhoVoluntario("Projeto2", "Descrição do Projeto 2", "Endereço 2", "05/04/2024", "10/04/2024");
+
+        // Testando métodos de validação e impressão
+        System.out.println("Projeto de Distribuição de Alimento:");
+        System.out.println("Validação do Projeto: " + distribuicaoAlimento.validaProjeto("Projeto1"));
+        System.out.println(distribuicaoAlimento.imprimeProjeto());
+
+        System.out.println("\nProjeto de Trabalho Voluntário:");
+        System.out.println("Validação do Projeto: " + trabalhoVoluntario.validaProjeto("Projeto2"));
+        System.out.println(trabalhoVoluntario.imprimeProjeto());
+    }
+}
