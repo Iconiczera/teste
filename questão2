@@ -1,17 +1,14 @@
-// Interface Alugavel
+
 interface Alugavel {
     void alugar();
     void devolver();
 }
 
-// Classe abstrata Veiculo
 abstract class Veiculo {
     private String modelo;
     private String marca;
     private int anoFabricacao;
-    private boolean disponivel;
-
-    // Construtor
+    private boolean 
     public Veiculo(String modelo, String marca, int anoFabricacao) {
         this.modelo = modelo;
         this.marca = marca;
@@ -19,7 +16,6 @@ abstract class Veiculo {
         this.disponivel = true; // Por padrão, o veículo está disponível para aluguel
     }
 
-    // Getters e Setters
     public String getModelo() {
         return modelo;
     }
@@ -53,14 +49,12 @@ abstract class Veiculo {
     }
 }
 
-// Subclasse Carro
 class Carro extends Veiculo implements Alugavel {
     // Construtor
     public Carro(String modelo, String marca, int anoFabricacao) {
         super(modelo, marca, anoFabricacao);
     }
 
-    // Métodos da interface Alugavel
     @Override
     public void alugar() {
         if (isDisponivel()) {
@@ -78,14 +72,11 @@ class Carro extends Veiculo implements Alugavel {
     }
 }
 
-// Subclasse Van
-class Van extends Veiculo implements Alugavel {
-    // Construtor
+class Van extends Veiculo implements Alugavel
     public Van(String modelo, String marca, int anoFabricacao) {
         super(modelo, marca, anoFabricacao);
     }
 
-    // Métodos da interface Alugavel
     @Override
     public void alugar() {
         if (isDisponivel()) {
@@ -103,14 +94,11 @@ class Van extends Veiculo implements Alugavel {
     }
 }
 
-// Subclasse Caminhao
 class Caminhao extends Veiculo implements Alugavel {
-    // Construtor
     public Caminhao(String modelo, String marca, int anoFabricacao) {
         super(modelo, marca, anoFabricacao);
     }
 
-    // Métodos da interface Alugavel
     @Override
     public void alugar() {
         if (isDisponivel()) {
@@ -130,7 +118,6 @@ class Caminhao extends Veiculo implements Alugavel {
 
 public class Main {
     public static void main(String[] args) {
-        // Exemplo de uso
         Carro carro = new Carro("Fusca", "Volkswagen", 1970);
         carro.alugar();
         carro.alugar(); // Tentativa de alugar novamente
