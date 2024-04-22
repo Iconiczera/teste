@@ -1,0 +1,64 @@
+class Animal {
+    private String nome;
+    private int idade;
+    private String somEmitido;
+
+    public Animal(String nome, int idade, String somEmitido) {
+        this.nome = nome;
+        this.idade = idade;
+        this.somEmitido = somEmitido;
+    }
+
+    public void emitirSom() {
+        System.out.println(somEmitido);
+    }
+}
+
+class Mamifero extends Animal {
+    private int quantidadeMamas;
+
+    public Mamifero(String nome, int idade, String somEmitido, int quantidadeMamas) {
+        super(nome, idade, somEmitido);
+        this.quantidadeMamas = quantidadeMamas;
+    }
+}
+
+class Ave extends Animal {
+    private double envergaduraAsas;
+
+    public Ave(String nome, int idade, String somEmitido, double envergaduraAsas) {
+        super(nome, idade, somEmitido);
+        this.envergaduraAsas = envergaduraAsas;
+    }
+}
+
+class Peixe extends Animal implements AnimalAquatico {
+    private String tipoHabitat;
+
+    public Peixe(String nome, int idade, String somEmitido, String tipoHabitat) {
+        super(nome, idade, somEmitido);
+        this.tipoHabitat = tipoHabitat;
+    }
+
+    @Override
+    public void nadar() {
+        System.out.println(nome + " está nadando no habitat " + tipoHabitat);
+    }
+}
+
+interface AnimalAquatico {
+    void nadar();
+}
+
+public class Zoo {
+    public static void main(String[] args) {
+        Mamifero leao = new Mamifero("Leão", 5, "Rugido", 4);
+        Ave arara = new Ave("Arara", 3, "Grasnado", 1.2);
+        Peixe tubarao = new Peixe("Tubarão", 10, "Rugido", "Marinho");
+
+        leao.emitirSom();
+        arara.emitirSom();
+        tubarao.emitirSom();
+        tubarao.nadar();
+    }
+}
