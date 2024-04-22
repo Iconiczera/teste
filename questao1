@@ -1,0 +1,123 @@
+// Interface Promoção
+interface Promocao {
+    double calcularDesconto(double preco);
+}
+
+// Classe ProdutoEletronico
+class ProdutoEletronico implements Promocao {
+    private String modelo;
+    private String marca;
+    private double preco;
+    private boolean emPromocao;
+
+    // Construtor
+    public ProdutoEletronico(String modelo, String marca, double preco) {
+        this.modelo = modelo;
+        this.marca = marca;
+        this.preco = preco;
+        this.emPromocao = false; // Por padrão, o produto não está em promoção
+    }
+
+    // Getters e Setters
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    public boolean isEmPromocao() {
+        return emPromocao;
+    }
+
+    public void setEmPromocao(boolean emPromocao) {
+        this.emPromocao = emPromocao;
+    }
+
+    // Método da interface Promoção
+    @Override
+    public double calcularDesconto(double preco) {
+        if (this.emPromocao) {
+            return preco * 0.9; // Desconto de 10%
+        } else {
+            return preco;
+        }
+    }
+}
+
+// Subclasse Smartphone
+class Smartphone extends ProdutoEletronico {
+    private String sistemaOperacional;
+
+    // Construtor
+    public Smartphone(String modelo, String marca, double preco, String sistemaOperacional) {
+        super(modelo, marca, preco);
+        this.sistemaOperacional = sistemaOperacional;
+    }
+
+    // Getter e Setter
+    public String getSistemaOperacional() {
+        return sistemaOperacional;
+    }
+
+    public void setSistemaOperacional(String sistemaOperacional) {
+        this.sistemaOperacional = sistemaOperacional;
+    }
+}
+
+// Subclasse Laptop
+class Laptop extends ProdutoEletronico {
+    private int memoriaRam; // Em GB
+
+    // Construtor
+    public Laptop(String modelo, String marca, double preco, int memoriaRam) {
+        super(modelo, marca, preco);
+        this.memoriaRam = memoriaRam;
+    }
+
+    // Getter e Setter
+    public int getMemoriaRam() {
+        return memoriaRam;
+    }
+
+    public void setMemoriaRam(int memoriaRam) {
+        this.memoriaRam = memoriaRam;
+    }
+}
+
+// Subclasse TV
+class TV extends ProdutoEletronico {
+    private double tamanhoTela; // Em polegadas
+
+    // Construtor
+    public TV(String modelo, String marca, double preco, double tamanhoTela) {
+        super(modelo, marca, preco);
+        this.tamanhoTela = tamanhoTela;
+    }
+
+    // Getter e Setter
+    public double getTamanhoTela() {
+        return tamanhoTela;
+    }
+
+    public void setTamanhoTela(double tamanhoTela) {
+        this.tamanhoTela = tamanhoTela;
+    }
+}
