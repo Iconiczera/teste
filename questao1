@@ -1,5 +1,5 @@
 interface Promocao {
-    double calcularDesconto(double preco);
+    double calcularDesconto();
 }
 
 class ProdutoEletronico implements Promocao {
@@ -7,11 +7,12 @@ class ProdutoEletronico implements Promocao {
     private String marca;
     private double preco;
     private boolean emPromocao;
-    public ProdutoEletronico(String modelo, String marca, double preco) {
+
+    public ProdutoEletronico(String modelo, String marca, double preco, boolean emPromocao) {
         this.modelo = modelo;
         this.marca = marca;
         this.preco = preco;
-        this.emPromocao = false;
+        this.emPromocao = emPromocao;
     }
 
     public String getModelo() {
@@ -47,11 +48,11 @@ class ProdutoEletronico implements Promocao {
     }
 
     @Override
-    public double calcularDesconto(double preco) {
-        if (this.emPromocao) {
-            return preco * 0.9;
+    public double calcularDesconto() {
+        if (emPromocao) {
+            return preco * 0.1;
         } else {
-            return preco;
+            return 0;
         }
     }
 }
@@ -59,8 +60,8 @@ class ProdutoEletronico implements Promocao {
 class Smartphone extends ProdutoEletronico {
     private String sistemaOperacional;
 
-    public Smartphone(String modelo, String marca, double preco, String sistemaOperacional) {
-        super(modelo, marca, preco);
+    public Smartphone(String modelo, String marca, double preco, boolean emPromocao, String sistemaOperacional) {
+        super(modelo, marca, preco, emPromocao);
         this.sistemaOperacional = sistemaOperacional;
     }
 
@@ -74,35 +75,47 @@ class Smartphone extends ProdutoEletronico {
 }
 
 class Laptop extends ProdutoEletronico {
-    private int memoriaRam;
+    private int memoriaRAM;
 
-    public Laptop(String modelo, String marca, double preco, int memoriaRam) {
-        super(modelo, marca, preco);
-        this.memoriaRam = memoriaRam;
+    public Laptop(String modelo, String marca, double preco, boolean emPromocao, int memoriaRAM) {
+        super(modelo, marca, preco, emPromocao);
+        this.memoriaRAM = memoriaRAM;
     }
 
-    public int getMemoriaRam() {
-        return memoriaRam;
+    public int getMemoriaRAM() {
+        return memoriaRAM;
     }
 
-    public void setMemoriaRam(int memoriaRam) {
-        this.memoriaRam = memoriaRam;
+    public void setMemoriaRAM(int memoriaRAM) {
+        this.memoriaRAM = memoriaRAM;
     }
 }
 
 class TV extends ProdutoEletronico {
-    private double tamanhoTela;
+    private int tamanhoTela;
 
-    public TV(String modelo, String marca, double preco, double tamanhoTela) {
-        super(modelo, marca, preco);
+    public TV(String modelo, String marca, double preco, boolean emPromocao, int tamanhoTela) {
+        super(modelo, marca, preco, emPromocao);
         this.tamanhoTela = tamanhoTela;
     }
 
-    public double getTamanhoTela() {
+    public int getTamanhoTela() {
         return tamanhoTela;
     }
 
-    public void setTamanhoTela(double tamanhoTela) {
+    public void setTamanhoTela(int tamanhoTela) {
         this.tamanhoTela = tamanhoTela;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Smartphone smartphone = new Smartphone("Galaxy S20", "Samsung", 2000, true, "Android");
+        Laptop laptop = new Laptop("MacBook Pro", "Apple", 2500, false, 16);
+        TV tv = new TV("Bravia", "Sony", 1500, true, 55);
+
+        System.out.println("Desconto do smartphone: $" + smartphone.calcularDesconto());
+        System.out.println("Desconto do laptop: $" + laptop.calcularDesconto());
+        System.out.println("Desconto da TV: $" + tv.calcularDesconto());
     }
 }
