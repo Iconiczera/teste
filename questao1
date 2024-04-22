@@ -1,24 +1,19 @@
-// Interface Promoção
 interface Promocao {
     double calcularDesconto(double preco);
 }
 
-// Classe ProdutoEletronico
 class ProdutoEletronico implements Promocao {
     private String modelo;
     private String marca;
     private double preco;
     private boolean emPromocao;
-
-    // Construtor
     public ProdutoEletronico(String modelo, String marca, double preco) {
         this.modelo = modelo;
         this.marca = marca;
         this.preco = preco;
-        this.emPromocao = false; // Por padrão, o produto não está em promoção
+        this.emPromocao = false;
     }
 
-    // Getters e Setters
     public String getModelo() {
         return modelo;
     }
@@ -51,28 +46,24 @@ class ProdutoEletronico implements Promocao {
         this.emPromocao = emPromocao;
     }
 
-    // Método da interface Promoção
     @Override
     public double calcularDesconto(double preco) {
         if (this.emPromocao) {
-            return preco * 0.9; // Desconto de 10%
+            return preco * 0.9;
         } else {
             return preco;
         }
     }
 }
 
-// Subclasse Smartphone
 class Smartphone extends ProdutoEletronico {
     private String sistemaOperacional;
 
-    // Construtor
     public Smartphone(String modelo, String marca, double preco, String sistemaOperacional) {
         super(modelo, marca, preco);
         this.sistemaOperacional = sistemaOperacional;
     }
 
-    // Getter e Setter
     public String getSistemaOperacional() {
         return sistemaOperacional;
     }
@@ -82,17 +73,14 @@ class Smartphone extends ProdutoEletronico {
     }
 }
 
-// Subclasse Laptop
 class Laptop extends ProdutoEletronico {
-    private int memoriaRam; // Em GB
+    private int memoriaRam;
 
-    // Construtor
     public Laptop(String modelo, String marca, double preco, int memoriaRam) {
         super(modelo, marca, preco);
         this.memoriaRam = memoriaRam;
     }
 
-    // Getter e Setter
     public int getMemoriaRam() {
         return memoriaRam;
     }
@@ -102,17 +90,14 @@ class Laptop extends ProdutoEletronico {
     }
 }
 
-// Subclasse TV
 class TV extends ProdutoEletronico {
-    private double tamanhoTela; // Em polegadas
+    private double tamanhoTela;
 
-    // Construtor
     public TV(String modelo, String marca, double preco, double tamanhoTela) {
         super(modelo, marca, preco);
         this.tamanhoTela = tamanhoTela;
     }
 
-    // Getter e Setter
     public double getTamanhoTela() {
         return tamanhoTela;
     }
