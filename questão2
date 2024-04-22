@@ -50,7 +50,6 @@ abstract class Veiculo {
 }
 
 class Carro extends Veiculo implements Alugavel {
-    // Construtor
     public Carro(String modelo, String marca, int anoFabricacao) {
         super(modelo, marca, anoFabricacao);
     }
