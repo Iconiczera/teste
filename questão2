@@ -1,0 +1,140 @@
+// Interface Alugavel
+interface Alugavel {
+    void alugar();
+    void devolver();
+}
+
+// Classe abstrata Veiculo
+abstract class Veiculo {
+    private String modelo;
+    private String marca;
+    private int anoFabricacao;
+    private boolean disponivel;
+
+    // Construtor
+    public Veiculo(String modelo, String marca, int anoFabricacao) {
+        this.modelo = modelo;
+        this.marca = marca;
+        this.anoFabricacao = anoFabricacao;
+        this.disponivel = true; // Por padrão, o veículo está disponível para aluguel
+    }
+
+    // Getters e Setters
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public int getAnoFabricacao() {
+        return anoFabricacao;
+    }
+
+    public void setAnoFabricacao(int anoFabricacao) {
+        this.anoFabricacao = anoFabricacao;
+    }
+
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
+}
+
+// Subclasse Carro
+class Carro extends Veiculo implements Alugavel {
+    // Construtor
+    public Carro(String modelo, String marca, int anoFabricacao) {
+        super(modelo, marca, anoFabricacao);
+    }
+
+    // Métodos da interface Alugavel
+    @Override
+    public void alugar() {
+        if (isDisponivel()) {
+            setDisponivel(false);
+            System.out.println("Carro alugado com sucesso!");
+        } else {
+            System.out.println("Este carro não está disponível para aluguel.");
+        }
+    }
+
+    @Override
+    public void devolver() {
+        setDisponivel(true);
+        System.out.println("Carro devolvido com sucesso!");
+    }
+}
+
+// Subclasse Van
+class Van extends Veiculo implements Alugavel {
+    // Construtor
+    public Van(String modelo, String marca, int anoFabricacao) {
+        super(modelo, marca, anoFabricacao);
+    }
+
+    // Métodos da interface Alugavel
+    @Override
+    public void alugar() {
+        if (isDisponivel()) {
+            setDisponivel(false);
+            System.out.println("Van alugada com sucesso!");
+        } else {
+            System.out.println("Esta van não está disponível para aluguel.");
+        }
+    }
+
+    @Override
+    public void devolver() {
+        setDisponivel(true);
+        System.out.println("Van devolvida com sucesso!");
+    }
+}
+
+// Subclasse Caminhao
+class Caminhao extends Veiculo implements Alugavel {
+    // Construtor
+    public Caminhao(String modelo, String marca, int anoFabricacao) {
+        super(modelo, marca, anoFabricacao);
+    }
+
+    // Métodos da interface Alugavel
+    @Override
+    public void alugar() {
+        if (isDisponivel()) {
+            setDisponivel(false);
+            System.out.println("Caminhão alugado com sucesso!");
+        } else {
+            System.out.println("Este caminhão não está disponível para aluguel.");
+        }
+    }
+
+    @Override
+    public void devolver() {
+        setDisponivel(true);
+        System.out.println("Caminhão devolvido com sucesso!");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Exemplo de uso
+        Carro carro = new Carro("Fusca", "Volkswagen", 1970);
+        carro.alugar();
+        carro.alugar(); // Tentativa de alugar novamente
+        carro.devolver();
+        carro.alugar(); // Tentativa de alugar após devolução
+    }
+}
